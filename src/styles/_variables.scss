@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+$background-color: #fcfcfc;
+$primary-color: mat-color($mat-indigo, 500);
+$white-color: #fff;
+$grey-color: #a5a5a5;
+$shadow: 0 1px 16px 0 rgba(189, 195, 222, 0.3);
+$shadow--small: 0 1px 10px 0 rgba(189, 195, 222, 0.15);
+$content-width: 800px;

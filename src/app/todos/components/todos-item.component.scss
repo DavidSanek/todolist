@@ -1,0 +1,45 @@
+@import 'variables';
+
+.item {
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: $shadow--small;
+  margin-bottom: 10px;
+  background-color: $white-color;
+  transition: 150ms all;
+
+  &:hover {
+    .item__icon {
+      opacity: 1;
+    }
+  }
+
+  &.is-completed {
+    background-color: $background-color;
+
+    .item__name {
+      color: $grey-color;
+      font-weight: 400;
+    }
+  }
+
+  &__name {
+    font-weight: 500;
+    transition: 150ms all;
+  }
+
+  &__subtext {
+    color: $grey-color;
+  }
+
+  &__icon {
+    color: $grey-color;
+    cursor: pointer;
+    opacity: 0;
+    transition: 150ms all;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@import '~normalize.css/normalize.css';
+@import 'variables';
+@import 'helpers';
+
+body {
+  background-color: $background-color;
+}
+
+.content-width {
+  max-width: $content-width;
+  width: 100%;
+}

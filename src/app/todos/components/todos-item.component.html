@@ -1,0 +1,26 @@
+<div
+  [@slideIn]=""
+  [class.is-completed]="todo.completed"
+  class="item flex align-center"
+>
+  <span class="item__subtext mr-3">#{{ todo.id }}</span>
+
+  <div class="flex-grow-1">
+    <p class="item__name mb-0">{{ todo.name }}</p>
+    <span class="item__subtext">
+      {{ todo.createdAt | date: 'dd.MM.yyyy HH:mm' }}
+    </span>
+  </div>
+
+  <mat-icon (click)="onDelete()" class="item__icon ml-2" matTooltip="Delete">
+    delete
+  </mat-icon>
+
+  <mat-icon class="item__icon ml-2" matTooltip="Edit">edit</mat-icon>
+
+  <mat-checkbox
+    (ngModelChange)="onCompletedChange($event)"
+    [ngModel]="todo.completed"
+    class="ml-4"
+  ></mat-checkbox>
+</div>

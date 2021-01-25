@@ -1,0 +1,17 @@
+@import 'src/styles/variables';
+
+.menu {
+  background-color: $white-color;
+  color: $primary-color;
+  box-shadow: $shadow;
+  padding: 20px 0;
+
+  &__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background-color: $background-color;
+    background-size: cover;
+    background-position: center;
+  }
+}

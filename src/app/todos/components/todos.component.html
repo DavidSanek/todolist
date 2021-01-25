@@ -1,0 +1,62 @@
+<div class="flex align-center justify-between">
+  <h1>Your todos</h1>
+  <mat-form-field appearance="outline" style="width: 180px;">
+    <mat-label>Filter</mat-label>
+    <mat-select [(value)]="selectedFilter">
+      <mat-option [value]="EFilter.All">All</mat-option>
+      <mat-option [value]="EFilter.Completed">Completed</mat-option>
+      <mat-option [value]="EFilter.Uncompleted">
+        Uncompleted
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<ng-container *ngIf="status === EStatus.Success">
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Add a new todo</mat-label>
+    <input
+      #newTodoInput
+      (keyup.enter)="onAddTodo()"
+      [(ngModel)]="newTodoValue"
+      matInput
+      placeholder="Eg. Get a cool job!"
+    />
+  </mat-form-field>
+
+  <todos-item
+    *ngFor="let todo of filteredTodos; trackBy: trackById"
+    [todo]="todo"
+  ></todos-item>
+
+  <div *ngIf="todos.length === 0" class="flex align-center justify-center mt-4">
+    <img
+      src="assets/no-todo.svg"
+      style="max-width: 220px; margin-right: 50px;"
+    />
+    <div>
+      <span class="mat-display-1 mb-3 fw-600">
+        No todos yet
+      </span>
+
+      <p>
+        Try to
+        <span
+          (click)="newTodoInput.focus()"
+          class="primary-color cursor-pointer fw-500"
+        >
+          add some
+        </span>
+        now right now.
+      </p>
+    </div>
+  </div>
+</ng-container>
+
+<div *ngIf="status === EStatus.Loading" class="flex justify-center">
+  <mat-spinner [diameter]="40"></mat-spinner>
+</div>
+
+<h3 *ngIf="status === EStatus.Error">
+  Could not load todos. Please try again later.
+</h3>

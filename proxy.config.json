@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://600eec693bb1d100179e06f8.mockapi.io/sanekdavid/todolist",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

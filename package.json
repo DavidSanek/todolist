@@ -5,20 +5,22 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
   "private": true,
+  "author": "David Šánek",
   "dependencies": {
     "@angular/animations": "~10.0.9",
+    "@angular/cdk": "^10.2.7",
     "@angular/common": "~10.0.9",
     "@angular/compiler": "~10.0.9",
     "@angular/core": "~10.0.9",
     "@angular/forms": "~10.0.9",
+    "@angular/material": "^10.2.7",
     "@angular/platform-browser": "~10.0.9",
     "@angular/platform-browser-dynamic": "~10.0.9",
     "@angular/router": "~10.0.9",
+    "normalize.css": "^8.0.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
