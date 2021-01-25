@@ -16,7 +16,9 @@
     delete
   </mat-icon>
 
-  <mat-icon class="item__icon ml-2" matTooltip="Edit">edit</mat-icon>
+  <mat-icon (click)="onEdit()" class="item__icon ml-2" matTooltip="Edit">
+    edit
+  </mat-icon>
 
   <mat-checkbox
     (ngModelChange)="onCompletedChange($event)"

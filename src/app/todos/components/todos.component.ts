@@ -107,7 +107,7 @@ export class TodosComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  trackById(_: number, todo: ITodo) {
+  trackById(_: number, todo: ITodo): string {
     return todo.id;
   }
 }

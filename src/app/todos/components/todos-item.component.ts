@@ -1,8 +1,14 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input
+} from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
+import { ModalService } from '../../modal/services';
 import { ITodo } from '../models';
 import { TodosService } from '../services';
 
@@ -25,7 +31,9 @@ export class TodosItemComponent {
 
   constructor(
     private todosService: TodosService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private modalService: ModalService,
+    private cd: ChangeDetectorRef
   ) {}
 
   onCompletedChange(completed: boolean): void {
@@ -42,15 +50,32 @@ export class TodosItemComponent {
   }
 
   onDelete(): void {
-    this.todosService
-      .deleteTodo$(this.todo.id)
+    this.modalService
+      .openConfirmation$()
       .pipe(
+        switchMap(() => this.todosService.deleteTodo$(this.todo.id)),
         catchError(() => {
           this.snackBar.open('Could not delete the todo');
           return EMPTY;
-        }),
-        switchMap(() => this.todosService.getTodos$())
+        })
       )
-      .subscribe((todos) => this.todosService.todos$.next(todos));
+      .subscribe();
+  }
+
+  onEdit(): void {
+    this.modalService
+      .openEditTodo$(this.todo.name)
+      .pipe(
+        tap((name) => {
+          this.todo.name = name;
+          this.cd.markForCheck();
+        }),
+        switchMap(() => this.todosService.updateTodo$(this.todo)),
+        catchError(() => {
+          this.snackBar.open('Could not update the name');
+          return EMPTY;
+        })
+      )
+      .subscribe();
   }
 }

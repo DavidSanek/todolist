@@ -1,0 +1,10 @@
+<div mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input [(ngModel)]="todoName" matInput />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button [mat-dialog-close]="null" mat-button>Cancel</button>
+  <button [mat-dialog-close]="todoName" mat-button>Update</button>
+</div>
